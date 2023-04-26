@@ -1,8 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
+import { Link, Navigate } from "react-router-dom";
 import "./Header.css";
 
 const Header = () => {
+  const { currentUser } = useAuth();
+  const { logout } = useAuth();
+
+  const handleLogout = (e) => {
+    e.preventDefault();
+
+    logout();
+  };
+
   return (
     <header className="header">
       <h1 className="header-title">
@@ -17,15 +27,23 @@ const Header = () => {
               Home
             </Link>
           </li>
+          {currentUser && (
+            <li>
+              <Link to="/new-post" className="header-nav-link">
+                New Post
+              </Link>
+            </li>
+          )}
           <li>
-            <Link to="/new-post" className="header-nav-link">
-              New Post
-            </Link>
-          </li>
-          <li>
-            <Link to="/login" className="header-nav-link">
-              Login
-            </Link>
+            {currentUser ? (
+              <Link onClick={handleLogout} className="header-nav-link">
+                Logout
+              </Link>
+            ) : (
+              <Link to="/login" className="header-nav-link">
+                Login
+              </Link>
+            )}
           </li>
         </ul>
       </nav>
