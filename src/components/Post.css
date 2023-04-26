@@ -1,0 +1,22 @@
+.post {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.post-title {
+  margin: 0;
+  margin-bottom: 1rem;
+}
+
+.post-content {
+  margin-bottom: 2rem;
+}
+
+.post-comments {
+  margin-bottom: 1rem;
+}
+
+.post-comment {
+  margin-bottom: 0.5rem;
+}

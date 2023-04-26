@@ -1,0 +1,22 @@
+.post-list {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.post-list-item {
+  margin-bottom: 2rem;
+}
+
+.post-title {
+  margin: 0;
+}
+
+.post-link {
+  text-decoration: none;
+  color: #333;
+}
+
+.post-link:hover {
+  color: #007bff;
+}
