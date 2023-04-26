@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useAuth } from "./contexts/AuthContext";
+import { useParams, Navigate } from "react-router-dom";
 import "./Post.css";
 
 import Comment from "./Comment";
@@ -7,11 +8,14 @@ import CommentForm from "./CommentForm";
 
 const Post = () => {
   const { id } = useParams();
+  const { currentUser } = useAuth();
+
   const [post, setPost] = useState({});
   const [comments, setComments] = useState([]);
+  const [redirectToHome, setRedirectToHome] = useState(false);
 
   const fetchPost = async () => {
-    const response = await fetch("http://localhost:3000/posts/" + id, {
+    const response = await fetch(`http://localhost:3000/posts/${id}`, {
       method: "GET",
     });
     if (response.ok) {
@@ -49,8 +53,31 @@ const Post = () => {
     }
   }, []);
 
+  const handleDeletePost = () => {
+    try {
+      fetchDeletePost();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const fetchDeletePost = async () => {
+    const response = await fetch(`http://localhost:3000/posts/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`, // Attach the JWT token from localStorage
+      },
+    });
+    if (response.ok) {
+      console.log("Post deleted successfully");
+      setRedirectToHome(true);
+    }
+  };
+
   return (
     <div className="post">
+      {redirectToHome && <Navigate replace to="/" />}
+      {currentUser && <button onClick={handleDeletePost}>Delete Post</button>}
       <h1 className="post-title">{post.title}</h1>
       <p className="post-content">{post.content}</p>
       <div className="post-comments">

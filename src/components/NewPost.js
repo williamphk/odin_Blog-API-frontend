@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Navigate } from "react-router-dom";
 
 import "./NewPost.css";
 
@@ -7,6 +8,8 @@ const NewPost = () => {
   const [content, setContent] = useState("");
   const [isPublic, setIsPublic] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [redirectToPost, setRedirectToPost] = useState(false);
+  const [postId, setPostId] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,9 +27,12 @@ const NewPost = () => {
 
       if (response.ok) {
         console.log("Post created successfully");
+        const data = await response.json();
+        setPostId(data.post._id);
         setTitle("");
         setContent("");
         setIsPublic(false);
+        setRedirectToPost(true);
       } else {
         console.log("Failed to create post");
       }
@@ -39,6 +45,7 @@ const NewPost = () => {
 
   return (
     <div className="new-post">
+      {redirectToPost && <Navigate replace to={`/post/${postId}`} />}
       <h2>Create a new post</h2>
       <form onSubmit={handleSubmit}>
         <div>
