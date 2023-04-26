@@ -1,9 +1,6 @@
 .footer {
   background-color: #f8f9fa;
   padding: 1rem;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
 }
 
 .footer-content {
