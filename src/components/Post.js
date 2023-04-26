@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./Post.css";
 
@@ -7,16 +7,47 @@ import CommentForm from "./CommentForm";
 
 const Post = () => {
   const { id } = useParams();
-  const post = {
-    id: 1,
-    title: "Post 1",
-    content: "This is the content of the first post.",
+  const [post, setPost] = useState({});
+  const [comments, setComments] = useState([]);
+
+  const fetchPost = async () => {
+    const response = await fetch("http://localhost:3000/posts/" + id, {
+      method: "GET",
+    });
+    if (response.ok) {
+      console.log("Post fetched successfully");
+      const data = await response.json();
+      setPost(data.post);
+    }
   };
 
-  const comments = [
-    { id: 1, author: "User 1", text: "This is a comment." },
-    { id: 2, author: "User 2", text: "This is another comment." },
-  ];
+  const fetchComments = async () => {
+    const response = await fetch(`http://localhost:3000/posts/${id}/comments`, {
+      method: "GET",
+    });
+    if (response.ok) {
+      console.log("Comment fetched successfully");
+      const data = await response.json();
+      const { comments } = data;
+      setComments(comments);
+    }
+  };
+
+  useEffect(() => {
+    try {
+      fetchPost();
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
+
+  useEffect(() => {
+    try {
+      fetchComments();
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
 
   return (
     <div className="post">
@@ -25,18 +56,18 @@ const Post = () => {
       <div className="post-comments">
         <h2>Comments</h2>
         {comments.map((comment) => (
-          <div key={comment.id} className="post-comment">
-            <p>
+          <div key={comment._id} className="post-comment">
+            <div>
               <Comment
-                key={comment.id}
-                author={comment.author}
-                text={comment.text}
+                key={comment._id}
+                author={comment.email}
+                text={comment.content}
               />
-            </p>
+            </div>
           </div>
         ))}
       </div>
-      <CommentForm />
+      <CommentForm onCommentSubmit={fetchComments} />
     </div>
   );
 };
