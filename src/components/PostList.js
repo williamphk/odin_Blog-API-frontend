@@ -12,13 +12,16 @@ const PostList = () => {
     const fetchData = async () => {
       // If user is logged in
       if (currentUser) {
-        const response = await fetch("http://localhost:3000/posts/all", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`, // Attach the JWT token from localStorage
-          },
-        });
+        const response = await fetch(
+          "https://blog-api-application.azurewebsites.net/posts/all",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`, // Attach the JWT token from localStorage
+            },
+          }
+        );
         if (response.ok) {
           console.log("Post fetched successfully");
           const data = await response.json();
@@ -26,9 +29,12 @@ const PostList = () => {
           setPosts(posts);
         }
       } else {
-        const response = await fetch("http://localhost:3000/posts/public", {
-          method: "GET",
-        });
+        const response = await fetch(
+          "https://blog-api-application.azurewebsites.net/posts/public",
+          {
+            method: "GET",
+          }
+        );
         if (response.ok) {
           console.log("Post fetched successfully");
           const data = await response.json();

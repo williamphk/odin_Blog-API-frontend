@@ -1,6 +1,8 @@
 import React, { useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { Editor } from "@tinymce/tinymce-react";
+import env from "react-dotenv";
+
 import "./CommentForm.css";
 
 const CommentForm = ({ onCommentSubmit }) => {
@@ -23,7 +25,7 @@ const CommentForm = ({ onCommentSubmit }) => {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/posts/${id}/comments`,
+        `https://blog-api-application.azurewebsites.net/posts/${id}/comments`,
         {
           method: "POST",
           headers: {
@@ -38,6 +40,9 @@ const CommentForm = ({ onCommentSubmit }) => {
         console.log("Comment created successfully");
         setEmail("");
         setContent("");
+        if (editorRef.current) {
+          editorRef.current.setContent("");
+        }
         onCommentSubmit();
       } else {
         console.log("Failed to create comment");
@@ -62,7 +67,7 @@ const CommentForm = ({ onCommentSubmit }) => {
       />
       <label htmlFor="content">Comment:</label>
       <Editor
-        apiKey="ed0ra4jacxxjgff67mexhb3shp442vylj9bhdqh25gsgn898"
+        apiKey={env.API_KEY}
         onInit={(evt, editor) => (editorRef.current = editor)}
         initialValue="<p>This is the initial content of the editor.</p>"
         init={{

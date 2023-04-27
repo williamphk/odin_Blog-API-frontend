@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import { Navigate } from "react-router-dom";
 import { Editor } from "@tinymce/tinymce-react";
+import env from "react-dotenv";
 
 import "./NewPost.css";
 
@@ -17,14 +18,17 @@ const NewPost = () => {
     setSubmitting(true);
 
     try {
-      const response = await fetch("http://localhost:3000/posts", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`, // Attach the JWT token from localStorage
-        },
-        body: JSON.stringify({ title, content, isPublic }),
-      });
+      const response = await fetch(
+        "https://blog-api-application.azurewebsites.net/posts",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`, // Attach the JWT token from localStorage
+          },
+          body: JSON.stringify({ title, content, isPublic }),
+        }
+      );
 
       if (response.ok) {
         console.log("Post created successfully");
@@ -69,7 +73,7 @@ const NewPost = () => {
         <div>
           <label htmlFor="content">Content:</label>
           <Editor
-            apiKey="ed0ra4jacxxjgff67mexhb3shp442vylj9bhdqh25gsgn898"
+            apiKey={env.API_KEY}
             onInit={(evt, editor) => (editorRef.current = editor)}
             initialValue="<p>This is the initial content of the editor.</p>"
             init={{

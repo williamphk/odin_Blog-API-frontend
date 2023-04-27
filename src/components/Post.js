@@ -16,9 +16,12 @@ const Post = () => {
   const [redirectToHome, setRedirectToHome] = useState(false);
 
   const fetchPost = async () => {
-    const response = await fetch(`http://localhost:3000/posts/${id}`, {
-      method: "GET",
-    });
+    const response = await fetch(
+      `https://blog-api-application.azurewebsites.net/posts/${id}`,
+      {
+        method: "GET",
+      }
+    );
     if (response.ok) {
       console.log("Post fetched successfully");
       const data = await response.json();
@@ -27,9 +30,12 @@ const Post = () => {
   };
 
   const fetchComments = async () => {
-    const response = await fetch(`http://localhost:3000/posts/${id}/comments`, {
-      method: "GET",
-    });
+    const response = await fetch(
+      `https://blog-api-application.azurewebsites.net/posts/${id}/comments`,
+      {
+        method: "GET",
+      }
+    );
     if (response.ok) {
       console.log("Comment fetched successfully");
       const data = await response.json();
@@ -63,12 +69,15 @@ const Post = () => {
   };
 
   const fetchDeletePost = async () => {
-    const response = await fetch(`http://localhost:3000/posts/${id}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`, // Attach the JWT token from localStorage
-      },
-    });
+    const response = await fetch(
+      `https://blog-api-application.azurewebsites.net/posts/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`, // Attach the JWT token from localStorage
+        },
+      }
+    );
     if (response.ok) {
       console.log("Post deleted successfully");
       setRedirectToHome(true);

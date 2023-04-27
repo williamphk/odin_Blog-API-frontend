@@ -19,7 +19,7 @@ const Comment = ({ commentId, author, text, onCommentDelete }) => {
 
   const fetchDeleteComment = async () => {
     const response = await fetch(
-      `http://localhost:3000/posts/${id}/comments/${commentId}`,
+      `https://blog-api-application.azurewebsites.net/posts/${id}/comments/${commentId}`,
       {
         method: "DELETE",
         headers: {
