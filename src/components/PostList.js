@@ -56,7 +56,10 @@ const PostList = () => {
       {posts.map((post) => (
         <div key={post._id} className="post-list-item">
           <h2 className="post-title">
-            <Link to={`/post/${post._id}`} className="post-link">
+            <Link
+              to={`/odin_Blog-API-frontend/post/${post._id}`}
+              className="post-link"
+            >
               {post.title}
             </Link>
           </h2>
