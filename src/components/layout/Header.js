@@ -23,13 +23,16 @@ const Header = () => {
       <nav className="header-nav">
         <ul className="header-nav-list">
           <li>
-            <Link to="/" className="header-nav-link">
+            <Link to="/odin_Blog-API-frontend/" className="header-nav-link">
               Home
             </Link>
           </li>
           {currentUser && (
             <li>
-              <Link to="/new-post" className="header-nav-link">
+              <Link
+                to="/odin_Blog-API-frontend/new-post"
+                className="header-nav-link"
+              >
                 New Post
               </Link>
             </li>
@@ -40,7 +43,10 @@ const Header = () => {
                 Logout
               </Link>
             ) : (
-              <Link to="/login" className="header-nav-link">
+              <Link
+                to="/odin_Blog-API-frontend/login"
+                className="header-nav-link"
+              >
                 Login
               </Link>
             )}
