@@ -14,11 +14,18 @@ function App() {
       <Router>
         <Header />
         <Routes>
-          <Route path="/" element={<PostList />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/post/:id" element={<Post />} />
-          <Route exact path="/new-post" element={<ProtectedRoute />}>
-            <Route path="/new-post" element={<NewPost />} />
+          <Route path="/odin_Blog-API-frontend/" element={<PostList />} />
+          <Route path="/odin_Blog-API-frontend/login" element={<Login />} />
+          <Route path="/odin_Blog-API-frontend/post/:id" element={<Post />} />
+          <Route
+            exact
+            path="/odin_Blog-API-frontend/new-post"
+            element={<ProtectedRoute />}
+          >
+            <Route
+              path="/odin_Blog-API-frontend/new-post"
+              element={<NewPost />}
+            />
           </Route>
         </Routes>
         <Footer />
