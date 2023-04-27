@@ -16,7 +16,7 @@ const Header = () => {
   return (
     <header className="header">
       <h1 className="header-title">
-        <Link to="/" className="header-link">
+        <Link to="/odin_Blog-API-frontend/" className="header-link">
           My Blog
         </Link>
       </h1>
