@@ -17,9 +17,11 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-dotenv && react-scripts start", 
-    "build": "react-dotenv && react-scripts build", 
-    "serve": "react-dotenv && serve build", 
+    "start": "react-dotenv && react-scripts start",
+    "predeploy" : "react-dotenv && npm run build",
+    "deploy" : "react-dotenv && gh-pages -d build",
+    "build": "react-dotenv && react-scripts build",
+    "serve": "react-dotenv && serve build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -42,6 +44,11 @@
     ]
   },
   "react-dotenv": {
-    "whitelist": ["API_KEY"]
+    "whitelist": [
+      "API_KEY"
+    ]
+  },
+  "devDependencies": {
+    "gh-pages": "^5.0.0"
   }
 }
