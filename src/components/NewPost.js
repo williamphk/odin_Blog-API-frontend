@@ -57,7 +57,9 @@ const NewPost = () => {
 
   return (
     <div className="new-post">
-      {redirectToPost && <Navigate replace to={`/post/${postId}`} />}
+      {redirectToPost && (
+        <Navigate replace to={`/odin_Blog-API-frontend/post/${postId}`} />
+      )}
       <h2>Create a new post</h2>
       <form onSubmit={handleSubmit}>
         <div>
