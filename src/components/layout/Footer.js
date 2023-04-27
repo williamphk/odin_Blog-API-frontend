@@ -10,7 +10,7 @@ const Footer = () => {
         <p>© {currentYear} My Blog. All rights reserved.</p>
         <div className="footer-social">
           <a
-            href="https://github.com"
+            href="https://github.com/williamphk"
             target="_blank"
             rel="noreferrer"
             className="footer-social-link"
@@ -18,7 +18,7 @@ const Footer = () => {
             Github
           </a>
           <a
-            href="https://linkedin.com"
+            href="https://linkedin.com/in/williamphk"
             target="_blank"
             rel="noreferrer"
             className="footer-social-link"

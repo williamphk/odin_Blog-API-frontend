@@ -86,7 +86,7 @@ const Post = () => {
 
   return (
     <div className="post">
-      {redirectToHome && <Navigate replace to="/" />}
+      {redirectToHome && <Navigate replace to="/odin_Blog-API-frontend/" />}
       {currentUser && <button onClick={handleDeletePost}>Delete Post</button>}
       <h1 className="post-title">{post.title}</h1>
       <p className="post-content">{post.content && parse(post.content)}</p>
