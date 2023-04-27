@@ -18,8 +18,8 @@
   },
   "scripts": {
     "start": "react-dotenv && react-scripts start",
-    "predeploy" : "react-dotenv && npm run build",
-    "deploy" : "react-dotenv && gh-pages -d build",
+    "predeploy" : "npm run build",
+    "deploy" : "gh-pages -d build",
     "build": "react-dotenv && react-scripts build",
     "serve": "react-dotenv && serve build",
     "test": "react-scripts test",
