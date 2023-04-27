@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "./contexts/AuthContext";
 import { useParams, Navigate } from "react-router-dom";
+import parse from "html-react-parser";
 import "./Post.css";
 
 import Comment from "./Comment";
@@ -79,7 +80,7 @@ const Post = () => {
       {redirectToHome && <Navigate replace to="/" />}
       {currentUser && <button onClick={handleDeletePost}>Delete Post</button>}
       <h1 className="post-title">{post.title}</h1>
-      <p className="post-content">{post.content}</p>
+      <p className="post-content">{post.content && parse(post.content)}</p>
       <div className="post-comments">
         <h2>Comments</h2>
         {comments.map((comment) => (
@@ -87,8 +88,10 @@ const Post = () => {
             <div>
               <Comment
                 key={comment._id}
+                commentId={comment._id}
                 author={comment.email}
                 text={comment.content}
+                onCommentDelete={fetchComments}
               />
             </div>
           </div>

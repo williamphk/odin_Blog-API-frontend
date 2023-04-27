@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "./contexts/AuthContext";
+import parse from "html-react-parser";
 import "./PostList.css";
 
 const PostList = () => {
@@ -53,7 +54,7 @@ const PostList = () => {
               {post.title}
             </Link>
           </h2>
-          <p>{post.content}</p>
+          <p>{parse(post.content)}</p>
         </div>
       ))}
     </div>
