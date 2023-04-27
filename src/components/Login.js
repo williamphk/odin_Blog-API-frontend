@@ -29,7 +29,7 @@ const Login = () => {
 
   return (
     <form className="login-form" onSubmit={handleSubmit}>
-      {redirectToHome && <Navigate replace to="/" />}
+      {redirectToHome && <Navigate replace to="/odin_Blog-API-frontend/" />}
       <h2>Login</h2>
       <label htmlFor="email">Email:</label>
       <input

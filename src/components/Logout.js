@@ -16,7 +16,9 @@ const Login = () => {
     setRedirectToHome(true);
   };
 
-  return <>{redirectToHome && <Navigate replace to="/" />}</>;
+  return (
+    <>{redirectToHome && <Navigate replace to="/odin_Blog-API-frontend/" />}</>
+  );
 };
 
 export default Login;
